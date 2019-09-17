@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# First thing to do is add the following line to the sudoers file
+# <user>   ALL=NOPASSWD: /usr/bin/apt, /bin/cp, /usr/bin/add-apt-repository, /usr/bin/kubeadm, /bin/chown
+
 usage() {
 	
 	echo -e "Usage: install_kubernetes.sh [OPTIONS]
@@ -13,15 +16,24 @@ install_docker() {
 	echo "Instaling Docker"
 
 	sudo apt update
-	sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+	
+	sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
 	
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-		$(lsb_release -cs) \
-		stable"
-	
+
+	sudo add-apt-repository \ 
+		"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+
 	sudo apt update
-	sudo apt-get install docker-ce=18.09.7 docker-ce-cli=18.09.7 containerd.io=18.09.7
+	
+	sudo apt install -y docker-ce=18.09.7 docker-ce-cli=18.09.7 containerd.io=18.09.7
 }
 
 install_kubernetes() {
@@ -32,7 +44,7 @@ install_kubernetes() {
 	
 	sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
 	
-	sudo apt-get update
+	sudo apt update
 	sudo apt install -y kubelet=1.15.3 kubeadm=1.15.3 kubectl=1.15.3
 }
 
