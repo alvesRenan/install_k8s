@@ -46,7 +46,7 @@ install_kubernetes() {
 	sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
 	
 	sudo apt update
-	sudo apt install -y kubelet=1.15.3 kubeadm=1.15.3 kubectl=1.15.3
+	sudo apt install -y kubelet=1.15.3-00 kubeadm=1.15.3-00 kubectl=1.15.3-00
 }
 
 config_master_node() {
