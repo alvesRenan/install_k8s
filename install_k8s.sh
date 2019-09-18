@@ -33,7 +33,7 @@ install_docker() {
 	sudo apt update
 	
 	sudo apt install -y docker-ce=5:18.09.7~3-0~ubuntu-bionic \
-		docker-ce-cli=5:18.09.7~3-0~ubuntu-bionic \ 
+		docker-ce-cli=5:18.09.7~3-0~ubuntu-bionic \
 		containerd.io
 }
 
