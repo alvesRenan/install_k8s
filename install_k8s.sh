@@ -26,14 +26,15 @@ install_docker() {
 	
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-	sudo add-apt-repository \ 
-		"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) \
     stable"
 
 	sudo apt update
 	
-	sudo apt install -y docker-ce=18.09.7 docker-ce-cli=18.09.7 containerd.io=18.09.7
+	sudo apt install -y docker-ce=5:18.09.7~3-0~ubuntu-bionic \
+		docker-ce-cli=5:18.09.7~3-0~ubuntu-bionic \ 
+		containerd.io
 }
 
 install_kubernetes() {
