@@ -43,7 +43,7 @@ install_kubernetes() {
 
 	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 	
-	sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
+	echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 	
 	sudo apt update
 	sudo apt install -y kubelet=1.15.3-00 kubeadm=1.15.3-00 kubectl=1.15.3-00
