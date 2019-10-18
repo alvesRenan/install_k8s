@@ -32,9 +32,10 @@ install_docker() {
 
   sudo apt update
 
-  sudo apt install -y docker-ce=5:18.09.7~3-0~ubuntu-bionic \
+  sudo apt install -y --allow-downgrades \ 
+    docker-ce=5:18.09.7~3-0~ubuntu-bionic \
     docker-ce-cli=5:18.09.7~3-0~ubuntu-bionic \
-    containerd.io
+    containerd.io \
 }
 
 install_kubernetes() {
@@ -46,7 +47,10 @@ install_kubernetes() {
   echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 
   sudo apt update
-  sudo apt install -y kubelet=1.15.3-00 kubeadm=1.15.3-00 kubectl=1.15.3-00
+  sudo apt install -y --allow-downgrades \ 
+    kubelet=1.15.3-00 \
+    kubeadm=1.15.3-00 \
+    kubectl=1.15.3-00
 }
 
 config_master_node() {
